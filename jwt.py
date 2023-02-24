@@ -16,6 +16,8 @@ def create_access_token(data: dict):
     to_encode.update({"exp": expire})
     encoded_jwt = jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
     return encoded_jwt
+#this function creates an access token for the entered value wihch is valid for 30 minutes as stated above and encodes the JWT 
+#with the secret key given above.
 
 def verify_token(token:str,credentials_exception):
 	try:
@@ -26,3 +28,5 @@ def verify_token(token:str,credentials_exception):
 		token_data = main.TokenData(username=username)
 	except JWTError:
 	    raise credentials_exception
+#this function verifies whether the token that is being used in the session belons to the user or not i.e. 
+#it verifies whether the user is legitimate or not. 

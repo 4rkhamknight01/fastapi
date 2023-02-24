@@ -47,7 +47,7 @@ db = client["User"]
 
 @app.get("/")
 def read_root(current_user:User = Depends(get_current_user)):
-	return {"data":"Hello OWrld"}
+	return {"data":"Hello World"}
 
 @app.post('/register')
 def create_user(request:User):

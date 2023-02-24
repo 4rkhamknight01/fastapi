@@ -21,11 +21,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-from pymongo import MongoClient
-mongodb_uri = 'mongodb+srv://username:<password>@cluster0.ydkjxjn.mongodb.net/?retryWrites=true&w=majority'
-port = 8000
-client = MongoClient(mongodb_uri, port)
-db = client["User"]
+
 
 
 class User(BaseModel):
@@ -40,6 +36,14 @@ class Token(BaseModel):
     token_type: str
 class TokenData(BaseModel):
     username: Optional[str] = None
+#these are all the class declarations which will be used by the end user when creating a session.
+
+from pymongo import MongoClient
+mongodb_uri = 'mongodb+srv://username:<password>@cluster0.ydkjxjn.mongodb.net/?retryWrites=true&w=majority'
+port = 8000
+client = MongoClient(mongodb_uri, port)
+db = client["User"]
+#instatntiating the databse with the User base model.
 
 @app.get("/")
 def read_root(current_user:User = Depends(get_current_user)):
